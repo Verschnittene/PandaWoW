@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Reputation Revealer
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  try to take over the world!
 // @author       Jeveux
 // @match        http://forum.pandawow.ru/usercp.php
@@ -43,7 +43,7 @@ function appendReputationDetails(record) {
         fetchElementForSelector(record.postLink, `#post_message_${record.postID}`)
     ]).then(results => {
         var userName = parseUserNameFromDOMTitle(results[0])
-        record.commentBlock.innerHTML += ` @<a class="smallfont" href="member.php?u=${record.userID}">${userName}</a>
+        record.commentBlock.innerHTML += ` <a class="smallfont" href="member.php?u=${record.userID}">@${userName}</a>
                                            <a class="smallfont" href="${record.postLink}">(post#${record.postID})</a>`
 
         var messageContent = results[1]
@@ -65,7 +65,7 @@ styleForReputationRecordDetails.innerHTML =
         font-size: 13px;
     }
 
-    .reputationRecordMessage img:not(.inlineimg, [alt="Цитата"]) {
+    .reputationRecordMessage img:not(.inlineimg):not([alt="Цитата"]) {
         width: 100%;
         height: 100%;
     }`
