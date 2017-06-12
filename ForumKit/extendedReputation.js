@@ -1,13 +1,13 @@
 // ==UserScript==
 // @name         Reputation Revealer
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.3
 // @description  try to take over the world!
 // @author       Jeveux
 // @match        http://forum.pandawow.ru/usercp.php
 // @grant        none
-// @updateURL    https://github.com/Verschnittene/PandaWoW/blob/master/ForumKit/extendedReputation.js
-// @downloadURL  https://github.com/Verschnittene/PandaWoW/blob/master/ForumKit/extendedReputation.js
+// @updateURL    https://raw.githubusercontent.com/Verschnittene/PandaWoW/master/ForumKit/extendedReputation.js
+// @downloadURL  https://raw.githubusercontent.com/Verschnittene/PandaWoW/master/ForumKit/extendedReputation.js
 // ==/UserScript==
 
 (function() {
