@@ -37,18 +37,18 @@ function fetchElementForSelector(url, selector) {
     })
 }
 
-function appendReputationDetails(recordInfo) {
+function appendReputationDetails(record) {
     Promise.all([
-        fetchElementForSelector(`member.php?u=${recordInfo.userID}`, 'title'),
-        fetchElementForSelector(recordInfo.postLink, `#post_message_${recordInfo.postID}`)
+        fetchElementForSelector(`member.php?u=${record.userID}`, 'title'),
+        fetchElementForSelector(record.postLink, `#post_message_${record.postID}`)
     ]).then(results => {
         var userName = parseUserNameFromDOMTitle(results[0])
-        recordInfo.commentBlock.innerHTML += ` @<a class="smallfont" href="member.php?u=${recordInfo.userID}">${userName}</a>
-                                               <a class="smallfont" href="${recordInfo.postLink}">(post#${recordInfo.postID})</a>`
+        record.commentBlock.innerHTML += ` @<a class="smallfont" href="member.php?u=${record.userID}">${userName}</a>
+                                           <a class="smallfont" href="${record.postLink}">(post#${record.postID})</a>`
 
         var messageContent = results[1]
         messageContent.setAttribute('class', 'reputationRecordMessage')
-        recordInfo.commentBlock.appendChild(messageContent)
+        record.commentBlock.appendChild(messageContent)
     }).catch(error => {
         alert(`Error ${error.code} received`)
     })
@@ -74,8 +74,8 @@ document.head.appendChild(styleForReputationRecordDetails)
 
 var reputationList = document.querySelectorAll('#reputationlist > li')
 for (var i = 0; i < reputationList.length; i++) {
-    var recordInfo = parseReputationRecordMeta(reputationList[i])
-    appendReputationDetails(recordInfo)
+    var record = parseReputationRecordMeta(reputationList[i])
+    appendReputationDetails(record)
 }
 
 // MARK: - Parsing functions
